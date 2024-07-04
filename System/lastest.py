@@ -20,6 +20,21 @@ products = [
     "redhat-jboss-eap",
     "tomcat"
 ]
+products2 = [
+    "rhel",
+    "oracle-solaris",
+    "oracle-database",
+    "mysql",
+    "postgresql",
+    "mariadb",
+    "mssqlserver",
+    "log4j",
+    "windows-server",
+    "windows",
+    "apache",
+    "redhat-jboss-eap",
+    "tomcat"
+]
 
 for product in products:
     conn.request("GET", f"/api/{product}.json", headers=headers)
