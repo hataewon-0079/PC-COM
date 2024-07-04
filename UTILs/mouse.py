@@ -4,8 +4,6 @@
 import pyautogui
 import time
 from pynput import mouse
-AAA = "AAA"
-BBB = "BBB"
 
 # 마우스 좌표를 저장할 리스트
 
