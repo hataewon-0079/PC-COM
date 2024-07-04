@@ -1,4 +1,9 @@
-# Linux 서버를 점검하는 배치 프로그램
+# Linux 서버를 점검하는 배치 프로그램------------
+echo "1. CPU 정보"
+echo "CPU 코어 수: `grep processor /proc/cpuinfo | wc -l`"
+echo "CPU 사용량: `top -b -n 1 | grep Cpu | awk '{print $2+$4}'`%"
+echo
+
 
 # 1. CPU 정보
 echo "1. CPU 정보"
