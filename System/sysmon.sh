@@ -84,3 +84,16 @@ echo "`oracle -v`"
 echo
 
 
+# 점검 결과를 파일로 저장
+echo "점검이 완료되었습니다." > sysmon.log
+echo "CPU 코어 수: `grep processor /proc/cpuinfo | wc -l`" >> sysmon.log
+echo "CPU 사용량: `top -b -n 1 | grep Cpu | awk '{print $2+$4}'`%" >> sysmon.log
+echo "전체 메모리: `free | grep Mem | awk '{print $2/1024}'`MB" >> sysmon.log
+echo "사용 중인 메모리: `free | grep Mem | awk '{print $3/1024}'`MB" >> sysmon.log
+
+echo "전체 디스크: `df -h | grep /dev/sda1 | awk '{print $2}'`" >> sysmon.log
+
+
+# 결과를 메일로 발송
+mail -s "서버 점검 결과" root < sysmon.log
+
