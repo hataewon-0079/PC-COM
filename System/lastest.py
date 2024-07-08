@@ -31,8 +31,6 @@ for product in products:
     conn.request("GET", f"/api/{product}.json", headers=headers)
     res = conn.getresponse()
     data = res.read()
-    # print(f"Product: {product}")
-    # print(data.decode("utf-8"))
     decoded_data = data.decode("utf-8")
     parsed_data = json.loads(decoded_data)
 
