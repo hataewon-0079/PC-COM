@@ -89,12 +89,34 @@ echo "`oracle -v`"
 echo
 
 
+# 빈파일 생성 daily_mon-hostname_YYYYMMDD.log
+
+
+
+
+
 # 점검 결과를 파일로 저장
-echo "점검이 완료되었습니다." > sysmon.log
-echo "CPU 코어 수: `grep processor /proc/cpuinfo | wc -l`" >> sysmon.log
-echo "CPU 사용량: `top -b -n 1 | grep Cpu | awk '{print $2+$4}'`%" >> sysmon.log
-echo "전체 메모리: `free | grep Mem | awk '{print $2/1024}'`MB" >> sysmon.log
-echo "사용 중인 메모리: `free | grep Mem | awk '{print $3/1024}'`MB" >> sysmon.log
+
+# 호스트명 가져오기
+hostname=$(hostname)
+
+# 현재 날짜(년월일) 가져오기
+current_date=$(date +"%Y%m%d")
+
+# 파일명 생성
+filename="Daily-Mon_${hostname}_${current_date}.log"
+
+# 빈 파일 생성
+touch $filename
+
+# 파일 생성 확인 메시지
+echo "빈 파일 생성됨: $filename"
+
+echo "점검이 완료되었습니다." > $filename
+echo "CPU 코어 수: `grep processor /proc/cpuinfo | wc -l`" $filename
+echo "CPU 사용량: `top -b -n 1 | grep Cpu | awk '{print $2+$4}'`%" $filename
+echo "전체 메모리: `free | grep Mem | awk '{print $2/1024}'`MB" $filename
+echo "사용 중인 메모리: `free | grep Mem | awk '{print $3/1024}'`MB" $filename
 
 echo "전체 디스크: `df -h | grep /dev/sda1 | awk '{print $2}'`" >> sysmon.log
 
